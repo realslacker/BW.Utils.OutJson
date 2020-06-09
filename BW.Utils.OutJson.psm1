@@ -4,6 +4,7 @@ using namespace System.Text
 function Out-Json {
     # .ExternalHelp BW.Utils.OutJson-help.xml
 
+    [CmdletBinding( DefaultParameterSetName='Path' )]
     param(
 
         [Parameter(
@@ -42,6 +43,7 @@ function Out-Json {
         $NoClobber,
 
         [Parameter( Mandatory, ValueFromPipeline )]
+        [psobject[]]
         $InputObject,
 
         [switch]
@@ -49,10 +51,7 @@ function Out-Json {
 
     )
 
-    # note that we do everything in the process block to avoid this
-    # PowerShell bug with -PipelineVariable:
-    # https://github.com/PowerShell/PowerShell/issues/10932
-    process {
+    begin {
 
         # create a path splat for the Set-Content command
         $PathSplat = @{}
@@ -74,6 +73,12 @@ function Out-Json {
     
         # collection to hold the input
         [ArrayList]$Collection = @()
+    
+    }
+
+    # note that this suffers from the PowerShell bug with -PipelineVariable:
+    # https://github.com/PowerShell/PowerShell/issues/10932
+    process {
 
         # process the input
         $InputObject | ForEach-Object {
@@ -83,6 +88,10 @@ function Out-Json {
             if ( $PassThru ) { $_ }
         
         }
+
+    }
+
+    end {
 
         # Because of the way we process input the input will always
         # be contained in an array, even if it's a single item. If
