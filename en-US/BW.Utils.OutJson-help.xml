@@ -10,7 +10,7 @@
       </maml:description>
     </command:details>
     <maml:description>
-      <maml:para>Implements Out-Json as a function to support outputting JSON files that are standards compliant. By default all output is wrapped in an array. Solves issues with byte encoding that happen with the "ConvertTo-Json | Set-Content" pipeline. Supports -PipelineVariable bug workaround.</maml:para>
+      <maml:para>Implements Out-Json as a function to support outputting JSON files that are standards compliant. By default all output is wrapped in an array. Solves issues with byte encoding that happen with the "ConvertTo-Json | Set-Content" pipeline.</maml:para>
     </maml:description>
     <command:syntax>
       <command:syntaxItem>

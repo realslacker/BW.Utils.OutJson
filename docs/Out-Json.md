@@ -27,7 +27,7 @@ Out-Json [-LiteralPath] <String> [-Depth <Int32>] [-Compress] [-UnWrapSinglton] 
 ## DESCRIPTION
 Implements Out-Json as a function to support outputting JSON files that are standards compliant.
 By default all output is wrapped in an array. Solves issues with byte encoding that happen with
-the "ConvertTo-Json | Set-Content" pipeline. Supports -PipelineVariable bug workaround.
+the "ConvertTo-Json | Set-Content" pipeline.
 
 ## EXAMPLES
 
